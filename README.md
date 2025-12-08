@@ -49,11 +49,15 @@ git push
 
 | Check | Points |
 |-------|--------|
-| Agents Load | 20 |
-| SWML Generation | 20 |
-| GeneralAgent exists | 20 |
-| SalesAgent exists | 20 |
-| SupportAgent exists | 20 |
+| GeneralAgent Loads | 15 |
+| GeneralAgent SWML | 10 |
+| GeneralAgent has routing | 10 |
+| SalesAgent Loads | 15 |
+| SalesAgent SWML | 10 |
+| SalesAgent has pricing | 10 |
+| SupportAgent Loads | 15 |
+| SupportAgent SWML | 10 |
+| SupportAgent has tickets | 5 |
 | **Total** | **100** |
 
 **Passing Score:** 70%

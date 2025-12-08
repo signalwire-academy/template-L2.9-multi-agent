@@ -8,49 +8,84 @@ assignment:
   passing_score: 70
 
 checks:
-  - id: instantiate
-    name: "Agents Load"
-    points: 20
+  - id: general_instantiate
+    name: "GeneralAgent Loads"
+    points: 15
     type: instantiate
     file: solution/agent.py
-  - id: swml_valid
-    name: "SWML Generation"
-    points: 20
+    agent_class: GeneralAgent
+  - id: general_swml
+    name: "GeneralAgent SWML"
+    points: 10
     type: swml_valid
     file: solution/agent.py
-  - id: has_general
-    name: "GeneralAgent exists"
-    points: 20
-    type: swml_contains
+    agent_class: GeneralAgent
+  - id: general_has_route
+    name: "GeneralAgent has routing"
+    points: 10
+    type: function_exists
     file: solution/agent.py
-    require:
-      - text: "general"
-  - id: has_sales
-    name: "SalesAgent exists"
-    points: 20
-    type: swml_contains
+    agent_class: GeneralAgent
+    function: route_to_sales
+  - id: sales_instantiate
+    name: "SalesAgent Loads"
+    points: 15
+    type: instantiate
     file: solution/agent.py
-    require:
-      - text: "sales"
-  - id: has_support
-    name: "SupportAgent exists"
-    points: 20
-    type: swml_contains
+    agent_class: SalesAgent
+  - id: sales_swml
+    name: "SalesAgent SWML"
+    points: 10
+    type: swml_valid
     file: solution/agent.py
-    require:
-      - text: "support"
+    agent_class: SalesAgent
+  - id: sales_has_pricing
+    name: "SalesAgent has pricing"
+    points: 10
+    type: function_exists
+    file: solution/agent.py
+    agent_class: SalesAgent
+    function: get_pricing
+  - id: support_instantiate
+    name: "SupportAgent Loads"
+    points: 15
+    type: instantiate
+    file: solution/agent.py
+    agent_class: SupportAgent
+  - id: support_swml
+    name: "SupportAgent SWML"
+    points: 10
+    type: swml_valid
+    file: solution/agent.py
+    agent_class: SupportAgent
+  - id: support_has_ticket
+    name: "SupportAgent has tickets"
+    points: 5
+    type: function_exists
+    file: solution/agent.py
+    agent_class: SupportAgent
+    function: create_ticket
 
 feedback:
   pass: |
     Excellent work! You've completed Lab 2.9: Multi-Agent Architecture.
 
+    You've learned how to:
+    - Create multiple specialized agents
+    - Register agents with AgentServer
+    - Route between agents using swml_transfer()
+    - Give each agent unique functions
+
     **Next steps:**
-    - Review the concepts covered
-    - Continue to the next lab
+    - Continue to Lab 2.10: Production Deployment
 
   fail: |
     Some checks didn't pass. Review the requirements and try again.
 
     **Tips:**
-    - Run `swaig-test solution/agent.py --list-tools` to verify functions
-    - Run `swaig-test solution/agent.py --dump-swml` to check SWML
+    - Define each agent class (GeneralAgent, SalesAgent, SupportAgent)
+    - Each agent needs route parameter in __init__
+    - Use AgentServer to register all agents
+    - Run `swaig-test solution/agent.py --agent-class GeneralAgent --list-tools`
+    - Run `swaig-test solution/agent.py --agent-class SalesAgent --list-tools`
+    - Run `swaig-test solution/agent.py --agent-class SupportAgent --list-tools`
